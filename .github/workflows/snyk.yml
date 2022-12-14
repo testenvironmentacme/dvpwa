@@ -1,0 +1,26 @@
+name: Snyk Code Test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+    
+jobs:
+  build:
+    name: Test and build
+    environment: snyk-npm
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+        
+    - name: Setup Snyk
+      run: |
+        curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
+        chmod +x ./snyk
+        ./snyk auth ${{secrets.SNYK_TOKEN}}
+    - name: Snyk Code # Remove || true to fail if there are vulnerabilities
+      run: |
+        ./snyk code test
