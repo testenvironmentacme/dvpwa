@@ -50,7 +50,9 @@ def init(argv):
         with Image.open(path) as im:
             im.thumbnail(size)
             im.save(file + ".thumbnail", "JPEG")
-            ImageMath.eval("convert(image, shred)", image = real_banksy)
+            output ImageMath.eval("convert(image, shred)", image = real_banksy)
+            
+            return output
 
     path = input()
     output = pillowfunctiontest(path)
