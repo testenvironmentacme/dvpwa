@@ -5,6 +5,7 @@ from aiohttp.web import Application
 from aiohttp.web_exceptions import HTTPForbidden, HTTPUnauthorized
 from aiohttp.web_request import Request
 from aiohttp_session import get_session
+from PIL import Image, ImageMath
 
 from sqli.dao.user import User
 
@@ -29,3 +30,11 @@ async def get_auth_user(request: Request) -> Optional[User]:
     user_id = session.get('user_id')
     async with app['db'].acquire() as conn:
         return await User.get(conn, user_id)
+
+def pillowfunctiontest():
+    im1 = Image.open(r"C:\Users\System-Pc\Desktop\ybear.jpg").convert('L') 
+    im2 = Image.open(r"C:\Users\System-Pc\Desktop\leave.jpg").convert('L')
+
+    out = ImageMath.eval("convert(min(a, b), 'L')", a = im1, b = im2)
+    out.save("result.jpg")
+    out.show()
