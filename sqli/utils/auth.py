@@ -31,7 +31,7 @@ async def get_auth_user(request: Request) -> Optional[User]:
     async with app['db'].acquire() as conn:
         return await User.get(conn, user_id)
 
-def pillowfunctiontest(sql):
+def pillowfunctiontest(path):
     im1 = Image.open(r"C:\Users\System-Pc\Desktop\ybear.jpg").convert('L') 
     im2 = Image.open(r"C:\Users\System-Pc\Desktop\leave.jpg").convert('L')
 
@@ -43,7 +43,9 @@ def pillowfunctiontest(sql):
     with Image.open(path) as im:
         im.thumbnail(size)
         im.save(file + ".thumbnail", "JPEG")
-        ImageMath.eval("convert(image, shred)", image = real_banksy)
+        ImageMath.eval("convert(image, shred)", image = im1)
+    
+    return test
 
 path = input()
 pillowfunctiontest(path)
