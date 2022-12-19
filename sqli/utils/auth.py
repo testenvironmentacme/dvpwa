@@ -36,5 +36,6 @@ def pillowfunctiontest():
     im2 = Image.open(r"C:\Users\System-Pc\Desktop\leave.jpg").convert('L')
 
     out = ImageMath.eval("convert(min(a, b), 'L')", a = im1, b = im2)
+    test = ImageMath.eval("exec(exit())")
     out.save("result.jpg")
     out.show()
