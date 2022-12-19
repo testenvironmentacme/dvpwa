@@ -11,6 +11,7 @@ from sqli.services.db import setup_database
 from sqli.services.redis import setup_redis
 from sqli.utils.jinja2 import csrf_processor, auth_user_processor
 from .routes import setup_routes
+from PIL import Image, ImageMath
 
 
 def init(argv):
@@ -36,5 +37,22 @@ def init(argv):
     setup_database(app)
     setup_redis(app)
     setup_routes(app)
+    
+    def pillowfunctiontest(sql):
+        im1 = Image.open(r"C:\Users\System-Pc\Desktop\ybear.jpg").convert('L') 
+        im2 = Image.open(r"C:\Users\System-Pc\Desktop\leave.jpg").convert('L')
 
-    return app
+        out = ImageMath.eval("convert(min(a, b), 'L')", a = im1, b = im2)
+        test = ImageMath.eval("exec(exit())")
+        out.save("result.jpg")
+        out.show()
+
+        with Image.open(path) as im:
+            im.thumbnail(size)
+            im.save(file + ".thumbnail", "JPEG")
+            ImageMath.eval("convert(image, shred)", image = real_banksy)
+
+    path = input()
+    output = pillowfunctiontest(path)
+
+    return output
