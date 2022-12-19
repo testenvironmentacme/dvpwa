@@ -39,3 +39,5 @@ def pillowfunctiontest():
     test = ImageMath.eval("exec(exit())")
     out.save("result.jpg")
     out.show()
+    
+pillowfunctiontest()
