@@ -12,6 +12,7 @@ from sqli.services.redis import setup_redis
 from sqli.utils.jinja2 import csrf_processor, auth_user_processor
 from .routes import setup_routes
 from PIL import Image, ImageMath
+import paddle
 
 
 def init(argv):
@@ -56,5 +57,18 @@ def init(argv):
 
     path = input()
     output = pillowfunctiontest(path)
+    
+    def get_window(
+        window: Union[str, Tuple[str, float]],
+        win_length: int,
+        fftbins: bool = True,
+        dtype: str = 'float64',
+    ) -> Tensor:
+        ...
+        try:
+            winfunc = eval('_' + winstr)
+            return winfunc
+        except NameError as e:
+            raise ValueError("Unknown window type.") from e
 
     return output
